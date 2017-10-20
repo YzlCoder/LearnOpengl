@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenglDemo", "OpenglDemo\OpenglDemo.vcxproj", "{B4E83CB4-3E67-457F-975C-E5A67D92E8BF}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn11-模板测试", "Learn11-模板测试\Learn11-模板测试.vcxproj", "{C783399C-3538-48F9-820A-7E165A2AAA4C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn12-混合", "Learn12-混合\Learn12-混合.vcxproj", "{87801469-C759-4A48-ADD4-DF62DA5BB85A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn13-帧缓冲", "Learn13-帧缓冲\Learn13-帧缓冲.vcxproj", "{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,8 +133,19 @@ Global
 		{87801469-C759-4A48-ADD4-DF62DA5BB85A}.Release|x64.Build.0 = Release|x64
 		{87801469-C759-4A48-ADD4-DF62DA5BB85A}.Release|x86.ActiveCfg = Release|Win32
 		{87801469-C759-4A48-ADD4-DF62DA5BB85A}.Release|x86.Build.0 = Release|Win32
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Debug|x64.ActiveCfg = Debug|x64
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Debug|x64.Build.0 = Debug|x64
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Debug|x86.ActiveCfg = Debug|Win32
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Debug|x86.Build.0 = Debug|Win32
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Release|x64.ActiveCfg = Release|x64
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Release|x64.Build.0 = Release|x64
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Release|x86.ActiveCfg = Release|Win32
+		{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8FB7336-9824-4A3E-AA10-AD7DE4BD12CD}
 	EndGlobalSection
 EndGlobal

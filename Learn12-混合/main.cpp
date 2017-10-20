@@ -20,6 +20,8 @@
 
 #include "Camera.h"
 
+#include <map>
+
 using namespace std;
 // Properties
 GLuint screenWidth = 800, screenHeight = 600;
@@ -70,9 +72,13 @@ int main()
 
 	// Setup some OpenGL options
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);		// 为了渲染出不同的透明度级别，我们需要开启混合(Blending)
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
 
 	// Setup and compile our shaders
 	Shader shader("advanced.vs", "advanced.frag");
+	Shader windowShader("advanced.vs", "window.frag");
 
 #pragma region "object_initialization"
 	// Set the object data (buffers, vertex attributes)
@@ -140,6 +146,31 @@ int main()
 		1.0f, -0.5f,  0.0f,  1.0f,  1.0f,
 		1.0f,  0.5f,  0.0f,  1.0f,  0.0f
 	};
+
+	GLfloat windowVertices[] = {
+		0.0f,  0.5f,  0.0f,  0.0f,  0.0f,
+		0.0f, -0.5f,  0.0f,  0.0f,  1.0f,
+		1.0f, -0.5f,  0.0f,  1.0f,  1.0f,
+
+		0.0f,  0.5f,  0.0f,  0.0f,  0.0f,
+		1.0f, -0.5f,  0.0f,  1.0f,  1.0f,
+		1.0f,  0.5f,  0.0f,  1.0f,  0.0f
+	};
+
+	// 窗口的位置
+	vector <glm::vec3> windows;
+	windows.push_back(glm::vec3(-1.5f, 0.0f, -0.48f));
+	windows.push_back(glm::vec3(1.5f, 0.0f, 0.51f));
+	windows.push_back(glm::vec3(0.0f, 0.0f, 0.7f));
+	windows.push_back(glm::vec3(-0.3f, 0.0f, -2.3f));
+	windows.push_back(glm::vec3(0.5f, 0.0f, -0.6f));
+	map<float, glm::vec3> sorted;		// 距离，位置向量
+	for (auto pos : windows)
+	{
+		GLfloat distance = glm::length(camera.Position - pos);		// 摄像机位置与窗口的距离，map会按照距离从小到大排序。
+		sorted[distance] = pos;
+	}
+
 	// Setup cube VAO
 	GLuint cubeVAO, cubeVBO;
 	glGenVertexArrays(1, &cubeVAO);
@@ -176,11 +207,25 @@ int main()
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	glBindVertexArray(0);
+	// Setup windows VAO
+	GLuint windowsVAO, windowsVBO;
+	glGenVertexArrays(1, &windowsVAO);
+	glGenBuffers(1, &windowsVBO);
+	glBindVertexArray(windowsVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, windowsVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(windowVertices), windowVertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
+	glBindVertexArray(0);
+
 
 	// Load textures
 	GLuint cubeTexture = loadTexture("box.jpg");
 	GLuint floorTexture = loadTexture("floor.jpg");
 	GLuint transparentTexture = loadTexture("grass.png", true);
+	GLuint windowTexture = loadTexture("window.png", true);
 #pragma endregion
 
 	vector<glm::vec3> vegetation;
@@ -241,6 +286,17 @@ int main()
 		}
 		glBindVertexArray(0);
 
+		// windows
+		glBindVertexArray(windowsVAO);
+		glBindTexture(GL_TEXTURE_2D, windowTexture);
+		for (map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)	// 逆序获取每个map的值（从远到近）
+		{
+			model = glm::mat4();
+			model = glm::translate(model, it->second);
+			glUniformMatrix4fv(glGetUniformLocation(windowShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+		}
+		glBindVertexArray(0);
 
 		// Swap the buffers
 		glfwSwapBuffers(window);

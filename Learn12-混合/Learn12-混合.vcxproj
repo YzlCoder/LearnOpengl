@@ -118,6 +118,7 @@
     <None Include="advanced.frag" />
     <None Include="advanced.vs" />
     <None Include="color.frag" />
+    <None Include="window.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="box.jpg" />
