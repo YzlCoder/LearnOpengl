@@ -21,17 +21,17 @@ void main()
     );
 
     float kernel[9] = float[](
-    1.0 / 14, 2.0 / 14, 1.0 / 14,
-    2.0 / 14, 2.0 / 14, 2.0 / 14,
-    1.0 / 14, 2.0 / 14, 1.0 / 14  
-	);
+        -1, -1, -1,
+        -1,  9, -1,
+        -1, -1, -1
+    );
 
     vec3 sampleTex[9];
     for(int i = 0; i < 9; i++)
     {
         sampleTex[i] = vec3(texture(screenTexture, TexCoords.st + offsets[i]));
     }
-    vec3 col;
+    vec3 col = vec3(0,0,0);
     for(int i = 0; i < 9; i++)
         col += sampleTex[i] * kernel[i];
 
