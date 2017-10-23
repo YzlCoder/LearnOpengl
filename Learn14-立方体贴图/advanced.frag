@@ -1,14 +1,17 @@
 #version 330 core
-in vec2 TexCoords;
+in vec3 Normal;
+in vec3 Position;
 
 out vec4 color;
 
-uniform sampler2D texture1;
+uniform float ratio;
+uniform vec3 cameraPos;
+uniform samplerCube skybox;
 
 void main()
-{             
-    vec4 texColor = texture(texture1, TexCoords);
-	if(texColor.a < 0.1)
-        discard;
-	color = texColor;
+{
+    float ratio = 1.00 / 1.52;
+    vec3 I = normalize(Position - cameraPos);
+    vec3 R = refract(I, normalize(Normal), ratio);
+    color = texture(skybox, R);
 }

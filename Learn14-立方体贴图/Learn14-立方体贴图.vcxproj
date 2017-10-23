@@ -122,6 +122,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="advanced.frag" />
+    <None Include="advanced.vs" />
+    <None Include="cubemap.frag" />
+    <None Include="cubemap.vs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
