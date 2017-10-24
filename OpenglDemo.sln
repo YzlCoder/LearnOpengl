@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenglDemo", "OpenglDemo\OpenglDemo.vcxproj", "{B4E83CB4-3E67-457F-975C-E5A67D92E8BF}"
 EndProject
@@ -30,6 +30,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn13-帧缓冲", "Learn13-帧缓冲\Learn13-帧缓冲.vcxproj", "{2F75CBD6-5DDF-4450-8546-D0FFBAB70BD5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn14-立方体贴图", "Learn14-立方体贴图\Learn14-立方体贴图.vcxproj", "{D855E844-F22A-4B6A-A274-65BC395D8E2E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn15-几何着色器", "Learn15-几何着色器\Learn15-几何着色器.vcxproj", "{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn16-实例化", "Learn16-实例化\Learn16-实例化.vcxproj", "{07AE3535-00E8-4B3E-844F-724846F6DAF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +155,22 @@ Global
 		{D855E844-F22A-4B6A-A274-65BC395D8E2E}.Release|x64.Build.0 = Release|x64
 		{D855E844-F22A-4B6A-A274-65BC395D8E2E}.Release|x86.ActiveCfg = Release|Win32
 		{D855E844-F22A-4B6A-A274-65BC395D8E2E}.Release|x86.Build.0 = Release|Win32
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Debug|x64.ActiveCfg = Debug|x64
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Debug|x64.Build.0 = Debug|x64
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Debug|x86.ActiveCfg = Debug|Win32
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Debug|x86.Build.0 = Debug|Win32
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Release|x64.ActiveCfg = Release|x64
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Release|x64.Build.0 = Release|x64
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Release|x86.ActiveCfg = Release|Win32
+		{ADE4BFBD-F158-41A6-88AA-E8F513567CF7}.Release|x86.Build.0 = Release|Win32
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Debug|x64.ActiveCfg = Debug|x64
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Debug|x64.Build.0 = Debug|x64
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Debug|x86.ActiveCfg = Debug|Win32
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Debug|x86.Build.0 = Debug|Win32
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Release|x64.ActiveCfg = Release|x64
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Release|x64.Build.0 = Release|x64
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Release|x86.ActiveCfg = Release|Win32
+		{07AE3535-00E8-4B3E-844F-724846F6DAF2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

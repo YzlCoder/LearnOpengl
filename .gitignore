@@ -162,3 +162,8 @@ $RECYCLE.BIN/
   
 # VisualStudioCode  
 .vscode
+.vs/OpenglDemo/v15/Solution.VC.db-wal
+.vs/OpenglDemo/v15/Solution.VC.db-shm
+.vs/OpenglDemo/v15/Solution.VC.db
+.vs/OpenglDemo/v15/Browse.VC.opendb
+.vs/OpenglDemo/v15/Browse.VC.db
