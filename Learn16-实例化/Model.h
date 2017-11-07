@@ -14,7 +14,7 @@ public:
 		this->loadModel(path);
 	}
 	void Draw(Shader shader);
-private:
+
 	/*  模型数据  */
 	std::vector<Mesh> meshes;
 	std::string directory;

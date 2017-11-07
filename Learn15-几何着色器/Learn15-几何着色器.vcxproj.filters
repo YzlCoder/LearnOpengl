@@ -45,5 +45,6 @@
   <ItemGroup>
     <None Include="model_loading.frag" />
     <None Include="model_loading.vert" />
+    <None Include="model_loading.geometry" />
   </ItemGroup>
 </Project>

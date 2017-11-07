@@ -31,7 +31,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void Do_Movement();
 
 // Camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 155.0f));
 bool keys[1024];
 GLfloat lastX = 400, lastY = 300;
 bool firstMouse = true;
@@ -85,7 +85,7 @@ int main()
 	glUniformMatrix4fv(glGetUniformLocation(instanceShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
 	// Generate a large list of semi-random model transformation matrices
-	GLuint amount = 100000;
+	GLuint amount = 50000;
 	glm::mat4* modelMatrices;
 	modelMatrices = new glm::mat4[amount];
 	srand(glfwGetTime()); // initialize random seed	
@@ -212,14 +212,6 @@ void Do_Movement()
 		camera.ProcessKeyboard(LEFT, deltaTime);
 	if (keys[GLFW_KEY_D])
 		camera.ProcessKeyboard(RIGHT, deltaTime);
-	if (keys[GLFW_KEY_LEFT])
-		pointLightPositions[0].x -= deltaTime;
-	if (keys[GLFW_KEY_RIGHT])
-		pointLightPositions[0].x += deltaTime;
-	if (keys[GLFW_KEY_UP])
-		pointLightPositions[0].y += deltaTime;
-	if (keys[GLFW_KEY_DOWN])
-		pointLightPositions[0].y -= deltaTime;
 }
 
 // Is called whenever a key is pressed/released via GLFW
