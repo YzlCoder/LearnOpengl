@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn17-抗锯齿化", "Lea
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn18-阴影贴图", "Learn18-阴影贴图\Learn18-阴影贴图.vcxproj", "{CE0996E2-89C0-427C-BDB2-11C38948E444}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Learn19-点阴影", "Learn19-点阴影\Learn19-点阴影.vcxproj", "{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -191,6 +193,14 @@ Global
 		{CE0996E2-89C0-427C-BDB2-11C38948E444}.Release|x64.Build.0 = Release|x64
 		{CE0996E2-89C0-427C-BDB2-11C38948E444}.Release|x86.ActiveCfg = Release|Win32
 		{CE0996E2-89C0-427C-BDB2-11C38948E444}.Release|x86.Build.0 = Release|Win32
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Debug|x64.ActiveCfg = Debug|x64
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Debug|x64.Build.0 = Debug|x64
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Debug|x86.ActiveCfg = Debug|Win32
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Debug|x86.Build.0 = Debug|Win32
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Release|x64.ActiveCfg = Release|x64
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Release|x64.Build.0 = Release|x64
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Release|x86.ActiveCfg = Release|Win32
+		{5E7CCE85-7B0E-4C55-8ACF-F2B83ADB02C6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
