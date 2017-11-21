@@ -300,7 +300,7 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, colorBuffers[0]);
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, pingpongColorbuffers[!horizontal]);
-		shaderBloomFinal.setInt("bloom", false);
+		shaderBloomFinal.setInt("bloom", bloom);
 		shaderBloomFinal.setFloat("exposure", exposure);
 		renderQuad();
 
