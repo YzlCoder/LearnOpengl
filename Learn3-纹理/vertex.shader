@@ -10,5 +10,5 @@ void main()
 {
 	gl_Position = transform * vec4(position, 1.0f);
 	ourColor = color;
-	TexCoord = vec2(texCoord.x, 1.0 - texCoord.y);
+	TexCoord = vec2(texCoord.x, texCoord.y);
 }
