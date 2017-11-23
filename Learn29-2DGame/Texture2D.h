@@ -1,6 +1,5 @@
 #pragma once
-#define GLEW_STATIC
-#include <GL/glew.h>
+#include "define.h"
 
 // Texture2D is able to store and configure a texture in OpenGL.
 // It also hosts utility functions for easy management.

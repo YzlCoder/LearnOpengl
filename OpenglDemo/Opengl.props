@@ -9,7 +9,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimpd.lib;glew32s.lib;glew32.lib;glfw3.lib;glfw3dll.lib;SOIL.lib;OpenGL32.lib;freetype265d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimpd.lib;glew32s.lib;glew32.lib;glfw3.lib;glfw3dll.lib;SOIL.lib;OpenGL32.lib;freetype265d.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

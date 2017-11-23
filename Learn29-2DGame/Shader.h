@@ -1,9 +1,5 @@
 #pragma once
-#include <string>
-#define GLEW_STATIC
-#include <GL/glew.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "define.h"
 
 
 // General purpsoe shader object. Compiles from file, generates

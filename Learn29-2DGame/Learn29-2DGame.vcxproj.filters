@@ -33,6 +33,27 @@
     <ClInclude Include="SpriteRender.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLevel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BallObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PostProcessor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -51,6 +72,21 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLevel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BallObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PostProcessor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

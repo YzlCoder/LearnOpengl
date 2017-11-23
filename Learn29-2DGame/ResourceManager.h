@@ -1,9 +1,5 @@
 #pragma once
-#include <map>
-#include <string>
-#define GLEW_STATIC
-#include <GL/glew.h>
-
+#include "define.h"
 #include "texture2d.h"
 #include "shader.h"
 

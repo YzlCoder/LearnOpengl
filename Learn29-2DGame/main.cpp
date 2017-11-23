@@ -6,13 +6,11 @@
 ** Creative Commons, either version 4 of the License, or (at your
 ** option) any later version.
 ******************************************************************/
-#define GLEW_STATIC
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include "define.h"
 
 #include "game.h"
 #include "ResourceManager.h"
-
+#include <iostream>
 
 // GLFW function declerations
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
