@@ -1,0 +1,15 @@
+#pragma once
+#include <windows.h>
+#define GLEW_STATIC
+#include <GL/glew.h>
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <functional>
+#include <map>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
