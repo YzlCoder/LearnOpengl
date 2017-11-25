@@ -31,13 +31,13 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	wndclass.hIconSm = NULL;
 	wndclass.hInstance = hInstance;
 	wndclass.lpfnWndProc = GLWindowProc;
-	wndclass.lpszClassName = L"GLWindow";
+	wndclass.lpszClassName = "GLWindow";
 	wndclass.lpszMenuName = NULL;
 	wndclass.style = CS_VREDRAW | CS_HREDRAW;
 	ATOM atom = RegisterClassEx(&wndclass);
 	if (!atom)
 	{
-		MessageBox(NULL, L"Notice", L"Error", MB_OK);
+		MessageBox(NULL, "Notice", "Error", MB_OK);
 		return 0;
 	}
 
@@ -50,7 +50,7 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	int windowWidth = rect.right - rect.left;
 	int windowHeight = rect.bottom - rect.top;
 
-	HWND hwnd = CreateWindowEx(NULL, L"GLWindow", L"OpenGL", WS_OVERLAPPEDWINDOW, 
+	HWND hwnd = CreateWindowEx(NULL, "GLWindow", "OpenGL", WS_OVERLAPPEDWINDOW, 
 		100, 100, windowWidth, windowHeight, NULL, NULL, hInstance, NULL);
 
 	HDC dc = GetDC(hwnd);
@@ -91,5 +91,6 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		Draw();
 		SwapBuffers(dc);
 	}
+
 	return 0;
 }

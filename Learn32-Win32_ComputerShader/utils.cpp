@@ -41,6 +41,30 @@ GLuint CompileShader(GLenum shaderType, const char* shaderCode)
 	return shader;
 }
 
+GLuint CreateComputerProgram(const char* path)
+{
+	GLuint program = glCreateProgram();
+	int len;
+	unsigned char * code = LoadFileContent(path, len);
+	GLuint shader = CompileShader(GL_COMPUTE_SHADER, (char*)code);
+	glAttachShader(program, shader);
+	glLinkProgram(program);
+	glDetachShader(program, shader);
+	glDeleteShader(shader);
+	GLint nResult = GL_TRUE;
+	glGetProgramiv(program, GL_LINK_STATUS, &nResult);
+	if (nResult == GL_FALSE)
+	{
+		char log[1024] = { 0 };
+		GLsizei writed = 0;
+		glGetProgramInfoLog(program, 1024, &writed, log);
+		printf("create computer program fail, link error : %s\n", log);
+		glDeleteProgram(program);
+		program = 0;
+	}
+	return program;
+}
+
 GLuint CreateProgram(GLuint vsShader, GLuint fsShader)
 {
 	GLuint program = glCreateProgram();
@@ -49,7 +73,7 @@ GLuint CreateProgram(GLuint vsShader, GLuint fsShader)
 	glLinkProgram(program);
 	glDetachShader(program, vsShader);
 	glDetachShader(program, fsShader);
-	GLint nResult;
+	GLint nResult = GL_TRUE;
 	glGetProgramiv(program, GL_LINK_STATUS, &nResult);
 	if (nResult == GL_FALSE)
 	{
@@ -72,25 +96,14 @@ float GetFramTime()
 	return float(frameTime);
 }
 
-GLuint loadTexture(GLchar* path)
+unsigned char* LoadTexture(GLchar* path, int& width, int& height)
 {
-	//Generate texture ID and load texture data 
-	GLuint textureID;
-	glGenTextures(1, &textureID);
-	int width, height, nrChannels;
+	int nrChannels;
 	unsigned char* image = stbi_load(path, &width, &height, &nrChannels, 0);
-	// Assign texture to ID
-	glBindTexture(GL_TEXTURE_2D, textureID);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, nrChannels == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	return image;
+}
 
-	// Parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
+void ReleaseTexture(unsigned char* image)
+{
 	stbi_image_free(image);
-	return textureID;
-
 }
