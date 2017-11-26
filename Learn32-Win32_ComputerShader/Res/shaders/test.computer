@@ -8,5 +8,5 @@ void main()
 	float u = float(gl_GlobalInvocationID.x);
 	float v = float(gl_GlobalInvocationID.y);
 	vec4 inputColor = imageLoad(inputImage, ivec2(u,v));
-	imageStore(outImage, ivec2(u,v), vec4(1.0, 1.0, 1.0, 1.0));
+	imageStore(outImage, ivec2(u,v), vec4(1.0, 1.0, 1.0, 1.0) - inputColor);
 }

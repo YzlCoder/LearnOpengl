@@ -9,23 +9,14 @@ GLint positionLocation, colorLocation, modelLocation, viewLocation, projectLocat
 glm::mat4 model, project;
 GLuint texture,textureLocation;
 
-void ImageProduce1(unsigned char * data, int width, int height)
-{
-	for (int y = 0; y < height; ++y)
-	{
-		for (int x = 0; x < width; ++x)
-		{
-			int offset = (x + y * height) * 4;
-			data[offset] = 255 - data[offset];
-			data[offset + 1] = 255 - data[offset + 1];
-			data[offset + 2] = 255 - data[offset + 2];
-			data[offset + 3] = 255 - data[offset + 3];
-		}
-	}
-}
+
+GLuint Fanse_1(unsigned char* image, int width, int height);
+GLuint Fanse_2(unsigned char* image, int width, int height);
 
 void Init()
 {
+	glGetError();
+
 	GLfloat data[] = {
 		// 位置          // 颜色
 		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
@@ -63,49 +54,72 @@ void Init()
 	int width, height;
 	unsigned char* image = LoadTexture("Res/textures/awesomeface.jpg", width, height);
 
-	/* 1. CPU  反色  0.003s  */
-	//Timer timer;
-    //
-	//timer.Start();
-	//for (int i = 0; i < width * height * 4; ++i)
-	//	image[i] = 255 - image[i];
-	//printf("time cost %f\n", timer.GetPassTime());
+	// CPU 反色  0.002s
+	//texture = Fanse_1(image, width, height);
 
-	GLuint computerDstTexture;
+	// GPU 反色 0.00004s
+	texture = Fanse_2(image, width, height);
+
+}
+
+GLuint Fanse_1(unsigned char* image, int width, int height)
+{
+	Timer timer;
+	timer.Start();
+	for (int i = 0; i < width * height * 3; ++i)
+		image[i] = 255 - image[i];
+	printf("time cost %f\n", timer.GetPassTime());
+
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	return texture;
+}
+
+GLuint Fanse_2(unsigned char* image, int width, int height)
+{
+	GLuint texture, computerDstTexture;
 	glGenTextures(1, &computerDstTexture);
 	glBindTexture(GL_TEXTURE_2D, computerDstTexture);
-	
+
 	// Parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTextureStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, width, height);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, image);
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	//glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, width, height);
+	//glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	ReleaseTexture(image);
-
 
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	// Parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTextureStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, width, height);
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	//glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, width, height);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	GLuint computerProgram = CreateComputerProgram("Res/shaders/test.computer");
-
+	Timer timer;
+	timer.Start();
 	glUseProgram(computerProgram);
 	glBindImageTexture(0, computerDstTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
 	glBindImageTexture(1, texture, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA8);
 	glDispatchCompute(width / 16, height / 16, 1);
 	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
-
+	printf("time cost %f\n", timer.GetPassTime());
+	return texture;
 }
 
 void SetViewPortSize(float width, float height)

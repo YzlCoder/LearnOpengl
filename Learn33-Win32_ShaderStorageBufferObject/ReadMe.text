@@ -1,0 +1,36 @@
+使用Shader Storage Buffer Object(SSBO)
+
+相比Learn-10加载模型来说：
+
+Vertex 的结构发生变化，因为std140的内存布局：  ______
+Model 取消了VAO,VBO 使用SSBO,EBO                   |
+                                                  |
+												  |
+												  |
+												  |
+												 \|/
+GLSL中每个变量类型比如int、float和bool被定义为4字节，每4字节被表示为N。
+
+类型	布局规范
+像int和bool这样的标量	每个标量的基线为N
+向量	每个向量的基线是2N或4N大小。这意味着vec3的基线为4N
+标量与向量数组	每个元素的基线与vec4的相同
+矩阵	被看做是存储着大量向量的数组，每个元素的基数与vec4相同
+结构体	根据以上规则计算其各个元素，并且间距必须是vec4基线的倍数
+像OpenGL大多数规范一样，举个例子就很容易理解。再次利用之前介绍的uniform块ExampleBlock，我们用std140布局，计算它的每个成员的aligned offset（对齐偏移）：
+
+layout (std140) uniform ExampleBlock
+{
+                     // base alignment ----------  // aligned offset
+    float value;     // 4                          // 0
+    vec3 vector;     // 16                         // 16 (必须是16的倍数，因此 4->16)
+    mat4 matrix;     // 16                         // 32  (第 0 行)
+                     // 16                         // 48  (第 1 行)
+                     // 16                         // 64  (第 2 行)
+                     // 16                         // 80  (第 3 行)
+    float values[3]; // 16 (数组中的标量与vec4相同)//96 (values[0])
+                     // 16                        // 112 (values[1])
+                     // 16                        // 128 (values[2])
+    bool boolean;    // 4                         // 144
+    int integer;     // 4                         // 148
+};
